@@ -2,7 +2,9 @@
 src/main/resources/application.yml
 
 # Target 
-/target
+/target/**
+#IDEA
+/.idea/**
 # Compiled class file
 *.class
 
