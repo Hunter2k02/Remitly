@@ -1,6 +1,6 @@
 package API.SWIFT.dto;
 
-public class CSVDto {
+public class CSVDTO {
     private final String countryISO2;
     private final String swiftCode;
     private final String codeType;
@@ -11,7 +11,7 @@ public class CSVDto {
     private final String timeZone;
     private final boolean isHeadquarter;
 
-    public CSVDto(String countryISO2, String swiftCode, String codeType, String bankName, String address, String townName, String countryName, String timeZone, boolean isHeadquarter) {
+    public CSVDTO(String countryISO2, String swiftCode, String codeType, String bankName, String address, String townName, String countryName, String timeZone, boolean isHeadquarter) {
         this.countryISO2 = countryISO2;
         this.swiftCode = swiftCode;
         this.codeType = codeType;

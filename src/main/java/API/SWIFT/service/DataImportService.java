@@ -1,6 +1,6 @@
 package API.SWIFT.service;
 
-import API.SWIFT.dto.CSVDto;
+import API.SWIFT.dto.CSVDTO;
 import org.springframework.stereotype.Service;
 
 
@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 @Service
 public class DataImportService {
-    public static ArrayList<CSVDto> readData(String filename){
-        ArrayList<CSVDto> dataList = new ArrayList<>();
+    public static ArrayList<CSVDTO> readData(String filename){
+        ArrayList<CSVDTO> dataList = new ArrayList<>();
 
         File file = new File(filename);
         try(Scanner fileScanner = new Scanner(file)){
@@ -21,7 +21,7 @@ public class DataImportService {
                 lines.add(fileScanner.nextLine());
             }
             for(int i = 1; i < lines.size(); i++){
-                CSVDto csvDto = getCsvDto(lines, i);
+                CSVDTO csvDto = getCsvDto(lines, i);
                 dataList.add(csvDto);
             }
         }
@@ -31,7 +31,7 @@ public class DataImportService {
         return dataList;
     }
 
-    private static CSVDto getCsvDto(ArrayList<String> lines, int i) {
+    private static CSVDTO getCsvDto(ArrayList<String> lines, int i) {
         String line = lines.get(i);
         String[] data = line.split(";");
         String countryISO2 = data[0];
@@ -44,7 +44,7 @@ public class DataImportService {
         String timeZone = data[7];
         boolean isHeadquarter = swiftCode.endsWith("XXX");
 
-        return new CSVDto(countryISO2, swiftCode, codeType, bankName, address, townName, countryName, timeZone, isHeadquarter);
+        return new CSVDTO(countryISO2, swiftCode, codeType, bankName, address, townName, countryName, timeZone, isHeadquarter);
     }
 
 
