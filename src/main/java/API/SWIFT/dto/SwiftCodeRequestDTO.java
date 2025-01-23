@@ -57,6 +57,7 @@ public class SwiftCodeRequestDTO {
     }
 
     public String fieldsNotEmpty() {
+        System.out.println(isHeadquarter);
         if(address == null || address.isEmpty() ) {
             return "address";
         }
@@ -70,10 +71,8 @@ public class SwiftCodeRequestDTO {
             return "swiftCode";
         }
         else if(isHeadquarter == null) {
-            return "isHeadquarter";
+            setHeadquarter(false);
         }
-        else{
-            return "";
-        }
+        return "";
     }
 }

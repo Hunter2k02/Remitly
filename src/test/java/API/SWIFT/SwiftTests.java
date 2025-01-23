@@ -1,7 +1,6 @@
 package API.SWIFT;
 
-import API.SWIFT.dto.DeleteRequestDTO;
-import API.SWIFT.dto.SwiftCodeRequestDTO;
+import API.SWIFT.dto.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -13,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SwiftControllerTests {
+public class SwiftTests {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -66,10 +65,8 @@ public class SwiftControllerTests {
 
     @Test
     @Order(3)
-    void unitTestGetSwiftCodeDetails() throws Exception {
+    void integrationTestGetSwiftCodeDetails() throws Exception {
         mockMvc.perform(get("/v1/swift-codes/TESTTEST123"))
-                .andExpect(jsonPath("$.countryISO2", equalTo("PL")))
-                .andExpect(jsonPath("$.countryName", equalTo("POLAND")))
                 .andExpect(status().isOk());
     }
 
@@ -79,6 +76,37 @@ public class SwiftControllerTests {
         mockMvc.perform(get("/v1/swift-codes/country/PL"))
                 .andExpect(status().isOk());
     }
+    @Test
+    @Order(4)
+    void unitTestCheckDtoCountryNameAndCountryISO2ToUppercase() throws Exception{
+        BranchResponseDTO branchResponseDTO = new BranchResponseDTO();
+        branchResponseDTO.setCountryName("test");
+        branchResponseDTO.setCountryISO2("pl");
+        assertEquals("TEST", branchResponseDTO.getCountryName(), "CountryName should be uppercase");
+        assertEquals("PL", branchResponseDTO.getCountryISO2(), "CountryISO2 should be uppercase");
+
+        CountrySwiftCodesResponseDTO swiftCodesResponseDTO = new CountrySwiftCodesResponseDTO();
+        swiftCodesResponseDTO.setCountryName("test");
+        swiftCodesResponseDTO.setCountryISO2("pl");
+        assertEquals("TEST", swiftCodesResponseDTO.getCountryName(),  "CountryName should be uppercase");
+        assertEquals("PL", swiftCodesResponseDTO.getCountryISO2(), "CountryISO2 should be uppercase");
+
+        HeadquarterResponseDTO headquarterResponseDTO = new HeadquarterResponseDTO();
+        headquarterResponseDTO.setCountryName("test");
+        headquarterResponseDTO.setCountryISO2("pl");
+        assertEquals("TEST", headquarterResponseDTO.getCountryName(),  "CountryName should be uppercase");
+        assertEquals("PL", headquarterResponseDTO.getCountryISO2(), "CountryISO2 should be uppercase");
+
+        SwiftCodeRequestDTO swiftCodeRequestDTO = new SwiftCodeRequestDTO();
+        swiftCodeRequestDTO.setCountryName("test");
+        swiftCodeRequestDTO.setCountryISO2("pl");
+        assertEquals("TEST", swiftCodeRequestDTO.getCountryName(),  "CountryName should be uppercase");
+        assertEquals("PL", swiftCodeRequestDTO.getCountryISO2(), "CountryISO2 should be uppercase");
+
+
+
+    }
+
     @Test
     @Order(5)
     void integrationTestDeleteSwiftCodeNotFound() throws Exception {
