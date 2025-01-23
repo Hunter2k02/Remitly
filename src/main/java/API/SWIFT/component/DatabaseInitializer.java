@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @Component
 public class DatabaseInitializer implements CommandLineRunner {
-   private BankRepository bankRepository;
+    private final BankRepository bankRepository;
 
     public DatabaseInitializer(BankRepository bankRepository) {
         this.bankRepository = bankRepository;
@@ -21,7 +21,6 @@ public class DatabaseInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if(bankRepository.count() == 0) {
-            System.out.println("Tables are empty, starting table population...");
             //Loading data from csv file
             ArrayList<CSVDTO> dataList =  DataImportService.readData("src/main/resources/SWIFT.csv");
             for(CSVDTO csvDto : dataList ) {

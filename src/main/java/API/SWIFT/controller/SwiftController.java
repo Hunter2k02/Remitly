@@ -1,6 +1,7 @@
 package API.SWIFT.controller;
 
 import API.SWIFT.dto.DeleteRequestDTO;
+import API.SWIFT.dto.MessageResponse;
 import API.SWIFT.dto.SwiftCodeRequestDTO;
 import API.SWIFT.service.BankService;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +20,16 @@ public class SwiftController {
     public ResponseEntity<?> swiftCode(@PathVariable("swift-code") String swiftCode) {
         return bankService.getBankBySwiftCode(swiftCode);
     }
-    @GetMapping("/country/{countryISO2code}")
-    public ResponseEntity<?> country(@PathVariable("countryISO2code") String countryISO2) {
+    @GetMapping("/country/{countryISO2}")
+    public ResponseEntity<?> country(@PathVariable("countryISO2") String countryISO2) {
         return bankService.getBanksByCountryISO2code(countryISO2.toUpperCase());
     }
     @PostMapping("/")
-    public ResponseEntity<?> addBank(@RequestBody SwiftCodeRequestDTO dto) {
+    public ResponseEntity<MessageResponse> addBank(@RequestBody SwiftCodeRequestDTO dto) {
         return bankService.addBank(dto);
     }
     @DeleteMapping("/")
-    public ResponseEntity<?> deleteBank(@RequestBody DeleteRequestDTO dto) {
+    public ResponseEntity<MessageResponse> deleteBank(@RequestBody DeleteRequestDTO dto) {
         return bankService.deleteBank(dto);
     }
 }

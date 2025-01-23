@@ -8,11 +8,11 @@ public class CountrySwiftCodesResponseDTO {
     private List<SwiftCodeResponseDTO> swiftCodes;
 
     public void setCountryISO2(String countryISO2) {
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
     }
 
     public void setCountryName(String countryName) {
-        this.countryName = countryName;
+        this.countryName = countryName.toUpperCase();
     }
 
     public void setSwiftCodes(List<SwiftCodeResponseDTO> swiftCodes) {

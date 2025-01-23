@@ -6,12 +6,13 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 @Service
 public class DataImportService {
-    public static ArrayList<CSVDTO> readData(String filename){
+    public static ArrayList<CSVDTO> readData(String filename) {
         ArrayList<CSVDTO> dataList = new ArrayList<>();
 
         File file = new File(filename);

@@ -88,7 +88,7 @@ public class BankService {
             return ResponseEntity.ok(countrySwiftCodesResponseDTO);
         }
     }
-    public ResponseEntity<?> addBank(SwiftCodeRequestDTO dto) {
+    public ResponseEntity<MessageResponse> addBank(SwiftCodeRequestDTO dto) {
         if(bankRepository.findBySwiftCode(dto.getSwiftCode()) != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse("SWIFT code already exists"));
         }
@@ -101,25 +101,27 @@ public class BankService {
             bank.setAddress(dto.getAddress());
             if(!bankRepository.findAllByCountryISO2(dto.getCountryISO2()).isEmpty()){
                 bank.setTimeZone(bankRepository.findAllByCountryISO2(dto.getCountryISO2()).get(0).getTimeZone());
+            }else{
+                bank.setTimeZone("N/A");
             }
             bank.setTownName("Empty");
             bank.setCountryName(dto.getCountryName());
             bank.setHeadquarter(dto.getHeadquarter());
             bankRepository.save(bank);
-            return ResponseEntity.ok(new MessageResponse("SWIFT code saved successfully"));
+            return ResponseEntity.status(HttpStatus.CREATED).body(new MessageResponse("SWIFT code saved successfully"));
         }
         else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse("Missing field in request body: " + dto.fieldsNotEmpty()));
         }
     }
-    public ResponseEntity<?> deleteBank(DeleteRequestDTO dto) {
+    public ResponseEntity<MessageResponse> deleteBank(DeleteRequestDTO dto) {
         Bank bank = bankRepository.findBySwiftCode(dto.getSwiftCode());
         if (bank == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("SWIFT code not found"));
         }
-        else if(bank.getSwiftCode().equals(dto.getSwiftCode()) &&
+        else if(bank.getSwiftCode().equals(dto.getSwiftCode().toUpperCase()) &&
                 bank.getBankName().equals(dto.getBankName()) &&
-                bank.getCountryISO2().equals(dto.getCountryISO2())) {
+                bank.getCountryISO2().equals(dto.getCountryISO2().toUpperCase())) {
             bankRepository.delete(bank);
             return ResponseEntity.ok(new MessageResponse("SWIFT code deleted successfully"));
         }

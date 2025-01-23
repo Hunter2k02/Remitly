@@ -11,8 +11,8 @@ public class BranchResponseDTO {
     public BranchResponseDTO(String address, String bankName, String countryISO2, String countryName, String swiftCode) {
         this.address = address;
         this.bankName = bankName;
-        this.countryISO2 = countryISO2;
-        this.countryName = countryName;
+        this.countryISO2 = countryISO2.toUpperCase();
+        this.countryName = countryName.toUpperCase();
         this.swiftCode = swiftCode;
     }
 
@@ -40,7 +40,7 @@ public class BranchResponseDTO {
     }
 
     public void setCountryISO2(String countryISO2) {
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
     }
 
     public String getCountryName() {
@@ -48,7 +48,7 @@ public class BranchResponseDTO {
     }
 
     public void setCountryName(String countryName) {
-        this.countryName = countryName;
+        this.countryName = countryName.toUpperCase();
     }
 
     public String getSwiftCode() {

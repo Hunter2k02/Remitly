@@ -10,7 +10,7 @@ public class SwiftCodeResponseDTO {
     public SwiftCodeResponseDTO(String address, String bankName, String countryISO2, Boolean isHeadquarter, String swiftCode) {
         this.address = address;
         this.bankName = bankName;
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
         this.isHeadquarter = isHeadquarter;
         this.swiftCode = swiftCode;
     }
@@ -38,7 +38,7 @@ public class SwiftCodeResponseDTO {
     }
 
     public void setCountryISO2(String countryISO2) {
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
     }
 
     public boolean isHeadquarter() {

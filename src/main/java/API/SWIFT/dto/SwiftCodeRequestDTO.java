@@ -29,7 +29,7 @@ public class SwiftCodeRequestDTO {
     }
 
     public void setCountryISO2(String countryISO2) {
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
     }
 
     public String getCountryName() {
@@ -37,7 +37,7 @@ public class SwiftCodeRequestDTO {
     }
 
     public void setCountryName(String countryName) {
-        this.countryName = countryName;
+        this.countryName = countryName.toUpperCase();
     }
 
     public Boolean getHeadquarter() {

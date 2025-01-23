@@ -9,7 +9,7 @@ public class DeleteRequestDTO {
     public DeleteRequestDTO(String swiftCode, String bankName, String countryISO2) {
         this.swiftCode = swiftCode;
         this.bankName = bankName;
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
     }
 
     public String getSwiftCode() {
@@ -33,6 +33,6 @@ public class DeleteRequestDTO {
     }
 
     public void setCountryISO2(String countryISO2) {
-        this.countryISO2 = countryISO2;
+        this.countryISO2 = countryISO2.toUpperCase();
     }
 }
