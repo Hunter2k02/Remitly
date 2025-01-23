@@ -16,13 +16,13 @@ This API provides functionalities for managing bank information, including retri
 #### 2.  Clone the repository:
 
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git)
+    git clone https://github.com/Hunter2k02/Remitly
     ```
 
 #### 3.  Navigate to the project directory:
 
     ```bash
-    cd YOUR_REPOSITORY
+    cd Remitly
     ```
 
 #### 4.  Build the project:
@@ -33,7 +33,7 @@ This API provides functionalities for managing bank information, including retri
 
 #### 5.  Configure the application:
 
-    * Create a file named `application.yml` in your project's root directory.
+    * Create a file named `application.yml` in your project's root directory (src/main/resources).
     * Note: These configurations target the PostgreSQL database connection.
     * Replace the placeholders in the following configuration with your actual values:
     
@@ -61,7 +61,7 @@ spring:
 
 #### 6.  Run the application:
 ```bash
-java -jar target/SWIFT-*.jar
+java -jar target/SWIFT-0.0.1-SNAPSHOT.jar
 ```
 ## Containerization (Docker)
 
